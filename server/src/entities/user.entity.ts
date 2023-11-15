@@ -8,9 +8,13 @@ export class User {
 
   @Column()
   @ApiProperty()
-  username: string;
+  fullName: string;
 
   @Column()
   @ApiProperty()
-  email: string;
+  emailAddress: string;
+
+  @Column()
+  @ApiProperty()
+  imageUrl: string;
 }

@@ -7,7 +7,7 @@ import {
 } from "@clerk/clerk-react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import AuthLayout from "../AuthLayout";
-import { dark } from '@clerk/themes';
+import { dark } from "@clerk/themes";
 import RootLayout from "@/_root/RootLayout";
 
 export default function ClerkProviderWithRoutes() {
@@ -18,7 +18,7 @@ export default function ClerkProviderWithRoutes() {
       publishableKey={import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY!}
       navigate={(to) => navigate(to)}
       appearance={{
-        baseTheme: dark
+        baseTheme: dark,
       }}
     >
       <Routes>
@@ -33,7 +33,7 @@ export default function ClerkProviderWithRoutes() {
         />
 
         <Route
-          path="/"
+          path="*"
           element={
             <>
               <SignedIn>

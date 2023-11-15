@@ -9,7 +9,6 @@ import { useUser } from "@clerk/clerk-react";
 const LeftSidebar = () => {
   const { pathname } = useLocation();
   const { user } = useUser();
-  console.log(user)
 
   return (
     <nav className="hidden h-screen md:flex px-6 py-10 flex-col justify-between min-w-[270px] bg-black text-white">
@@ -31,7 +30,9 @@ const LeftSidebar = () => {
           />
           <div className="flex flex-col">
             <p className="body-bold">{user?.fullName}</p>
-            <p className="text-sm text-gray-500">{user?.emailAddresses[0].emailAddress}</p>
+            <p className="text-sm text-gray-500">
+              {user?.emailAddresses[0].emailAddress}
+            </p>
           </div>
         </Link>
 

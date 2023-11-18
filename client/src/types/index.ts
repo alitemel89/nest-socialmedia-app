@@ -16,8 +16,9 @@ export type INavLink = {
   export type INewPost = {
     title: string;
     content: string;
-    imageUrl: string;
+    imageUrl?: string;
     location?: string;
+    user: any
   };
   
   export type IUpdatePost = {

@@ -15,6 +15,9 @@ export class Post {
   @Column()
   imageUrl: string;
 
+  @Column()
+  location?: string;
+
   @ManyToOne(() => User)
   @JoinColumn()
   user: User;

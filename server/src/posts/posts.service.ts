@@ -16,7 +16,7 @@ export class PostsService {
   }
 
   async create(createPostDto: CreatePostDto): Promise<Post> {
-    const user = this.postRepository.create(createPostDto);
-    return this.postRepository.save(user);
+    const post = this.postRepository.create(createPostDto);
+    return this.postRepository.save(post);
   }
 }

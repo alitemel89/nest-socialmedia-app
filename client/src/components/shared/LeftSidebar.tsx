@@ -11,7 +11,7 @@ const LeftSidebar = () => {
   const { user } = useUser();
 
   return (
-    <nav className="hidden h-screen md:flex px-6 py-10 flex-col justify-between min-w-[270px] bg-black text-white">
+    <nav className="hidden min-h-screen md:flex px-6 py-10 flex-col justify-between min-w-[270px] bg-slate-950 text-white">
       <div className="flex flex-col gap-11">
         <Link to="/" className="flex gap-3 items-center">
           <img

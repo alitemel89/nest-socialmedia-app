@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { UserButton } from "@clerk/clerk-react";
 const Topbar = () => {
   return (
-    <section className="sticky md:hidden top-0 z-50 bg-red-500 w-full">
+    <section className="sticky md:hidden top-0 z-50 bg-slate-950 w-full">
       <div className="flex justify-between py-4 px-5">
         <Link to="/" className="flex gap-3 items-center">
           <img

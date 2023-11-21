@@ -9,3 +9,13 @@ export const createPost = async (postData: INewPost): Promise<any> => {
     throw error;
   }
 };
+
+export const getRecentPosts = async (): Promise<any> => {
+  try {
+    const response = await axios.get("http://localhost:3000/posts");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+

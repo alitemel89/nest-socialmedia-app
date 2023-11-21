@@ -18,6 +18,7 @@ export class Post {
   @Column()
   location?: string;
 
+  @Column()
   @ManyToOne(() => User)
   @JoinColumn()
   user: User;

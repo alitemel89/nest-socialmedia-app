@@ -12,7 +12,7 @@ export class PostsService {
   ) {}
 
   async findAll(): Promise<Post[]> {
-    return this.postRepository.find();
+      return this.postRepository.find();
   }
 
   async create(createPostDto: CreatePostDto): Promise<Post> {

@@ -1,5 +1,4 @@
 import * as z from "zod";
-import { Models } from "appwrite";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { PostValidation } from "@/lib/validation";
 import { useToast } from "@/components/ui/use-toast";
 import { useCreatePost } from "@/lib/react-query/queries";
-import { useUser } from "@clerk/clerk-react";
+import {  useUser } from "@clerk/clerk-react";
 import {
   Form,
   FormControl,
@@ -21,11 +20,13 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import FileUploader from "../shared/FileUploader";
 import Loader from "../shared/Loader";
+import { INewPost } from "@/types";
 
 type PostFormProps = {
-  post?: Models.Document;
+  post?: INewPost;
   action: "Create" | "Update";
 };
+
 
 const PostForm = ({ post, action }: PostFormProps) => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
       location: "",
     },
   });
+
 
   // Query
   const { mutateAsync: createPost, isPending } = useCreatePost();
@@ -113,7 +115,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
               <FormControl>
                 <FileUploader
                   fieldChange={field.onChange}
-                  mediaUrl={post?.imageUrl}
+                  mediaUrl={post?.imageUrl!}
                 />
               </FormControl>
               <FormMessage className="text-red-500" />

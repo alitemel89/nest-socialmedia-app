@@ -42,7 +42,7 @@ const Home = () => {
             Feed
           </h2>
         </div>
-        <div className="max-w-5xl flex gap-3 justify-start items-center w-full">
+        <div className="max-w-5xl w-full">
           {posts?.map((post: Post) => (
             <PostCard key={post.id} post={post} />
           ))}

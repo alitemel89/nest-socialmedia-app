@@ -1,5 +1,6 @@
+// entities/post.entity.ts
 import { User } from 'src/entities/user.entity';
-import { Entity, ObjectIdColumn, ObjectId, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, ObjectIdColumn, Column, ManyToOne, JoinColumn, ObjectId } from 'typeorm';
 
 @Entity()
 export class Post {
@@ -18,7 +19,6 @@ export class Post {
   @Column()
   location?: string;
 
-  @Column()
   @ManyToOne(() => User)
   @JoinColumn()
   user: User;

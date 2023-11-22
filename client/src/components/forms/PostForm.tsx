@@ -37,7 +37,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
     defaultValues: {
       title: "",
       content: "",
-      imageUrl: "",
+      imageUrl: [],
       location: "",
     },
   });

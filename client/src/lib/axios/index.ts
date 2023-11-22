@@ -1,6 +1,7 @@
 import axios from "axios";
 import { INewPost } from "@/types";
 
+
 export const createPost = async (postData: INewPost): Promise<any> => {
   try {
     const response = await axios.post("http://localhost:3000/posts", postData);
@@ -18,4 +19,21 @@ export const getRecentPosts = async (): Promise<any> => {
     throw error;
   }
 };
+
+
+export const getAllUsers = async (): Promise<any[]> => {
+  try {
+    const response = await axios.get("https://api.clerk.com/v1/users", {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY!}`
+      },
+    });
+    return response.data.data; // Assuming user data is under the 'data' key
+  } catch (error) {
+    throw error;
+  }
+};
+
+
 

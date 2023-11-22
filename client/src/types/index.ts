@@ -4,7 +4,7 @@ export type INavLink = {
   label: string;
 };
 
-type UserProperties = {
+export type UserProperties = {
   fullName: string | null | undefined;
   imageUrl: string | undefined;
   id: string | undefined;

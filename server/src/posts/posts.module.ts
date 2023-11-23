@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Post } from '../entities/post.entity'; // Adjust the path based on your project structure
+import { MongooseModule } from '@nestjs/mongoose'; // Import MongooseModule
 import { PostsService } from './posts.service';
 import { PostsController } from './posts.controller';
+import { PostEntitySchema, PostEntity } from 'src/entities/post.entity'; // Import PostEntity
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Post])],
+  imports: [MongooseModule.forFeature([{ name: PostEntity.name, schema: PostEntitySchema }])],
   controllers: [PostsController],
   providers: [PostsService],
 })

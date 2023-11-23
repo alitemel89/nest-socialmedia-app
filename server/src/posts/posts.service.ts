@@ -1,47 +1,39 @@
-// services/posts.service.ts
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Post as PostEntity } from '../entities/post.entity';
+import { InjectModel } from '@nestjs/mongoose'; // Import InjectModel from @nestjs/mongoose
+import { Model } from 'mongoose'; // Import Model from mongoose
 import { CreatePostDto } from '../dto/post.dto';
-import { ObjectId } from 'mongodb';
+import { PostEntity, PostEntityDocument } from 'src/entities/post.entity';
 
 @Injectable()
 export class PostsService {
   constructor(
-    @InjectRepository(PostEntity)
-    private readonly postRepository: Repository<PostEntity>,
+    @InjectModel(PostEntity.name)
+    private readonly postModel: Model<PostEntityDocument>,
   ) {}
 
-  findAll(): Promise<PostEntity[]> {
-    return this.postRepository.find();
+  async findAll(): Promise<PostEntity[]> {
+    return this.postModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<PostEntity> {
+    return this.postModel.findById(id).exec();
   }
 
   async create(post: CreatePostDto): Promise<PostEntity> {
-    const newPost = this.postRepository.create(post);
-    return await this.postRepository.save(newPost);
+    const newPost = new this.postModel(post);
+    return newPost.save();
   }
 
-  async update(id: ObjectId, post: CreatePostDto): Promise<PostEntity> {
-    const existingPost = await this.postRepository.findOne({
-      where: { id }, // Specify the type explicitly
-    });
-  
-    if (!existingPost) {
-      throw new NotFoundException(`Post with id ${id.toString()} not found`);
-    }
-  
-    // Update the properties of the existing post with the new values
-    this.postRepository.merge(existingPost, post);
-  
-    return await this.postRepository.save(existingPost);
+  async update(id: string, post: CreatePostDto): Promise<PostEntity> {
+    await this.postModel.findByIdAndUpdate(id, post).exec();
+    return this.postModel.findById(id).exec();
   }
 
-  async delete(id: ObjectId): Promise<void> {
-    const result = await this.postRepository.delete(id.toString()); // Convert ObjectId to string
+  async delete(id: string): Promise<void> {
+    const result = await this.postModel.findByIdAndDelete(id).exec();
 
-    if (result.affected === 0) {
-      throw new NotFoundException(`Post with id ${id.toString()} not found`);
+    if (!result) {
+      throw new NotFoundException(`Post with id ${id} not found`);
     }
   }
 }

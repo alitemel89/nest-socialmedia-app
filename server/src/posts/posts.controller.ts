@@ -1,10 +1,15 @@
-// controllers/posts.controller.ts
-import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Put,
+  Delete,
+} from '@nestjs/common';
 import { PostsService } from './posts.service';
-import { Post as PostEntity } from '../entities/post.entity';
-import { CreatePostDto } from 'src/dto/post.dto';
-import { ObjectId } from 'mongodb';
-
+import { CreatePostDto } from 'src/dto/post.dto'; // Adjust the path based on your project structure
+import { PostEntity } from 'src/entities/post.entity';
 
 @Controller('posts')
 export class PostsController {
@@ -20,13 +25,16 @@ export class PostsController {
     return this.postsService.create(post);
   }
 
-  @Put(':id') // Use @Put decorator for the update method
-  update(@Param('id') id: ObjectId, @Body() post: CreatePostDto): Promise<PostEntity> {
+  @Put(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() post: CreatePostDto, // Update to use CreatePostDto
+  ): Promise<PostEntity> {
     return this.postsService.update(id, post);
   }
 
   @Delete(':id')
-  delete(@Param('id') id: ObjectId): Promise<void> {
+  delete(@Param('id') id: string): Promise<void> {
     return this.postsService.delete(id);
   }
 }

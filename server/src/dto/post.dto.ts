@@ -13,11 +13,4 @@ export class CreatePostDto {
 
   @ApiProperty()
   readonly location?: string;
-
-  @ApiProperty()
-  readonly user: {
-    id: string;
-    fullName: string;
-    imageUrl: string;
-  };
 }

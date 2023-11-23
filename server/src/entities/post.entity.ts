@@ -1,25 +1,21 @@
-// entities/post.entity.ts
-import { User } from 'src/entities/user.entity';
-import { Entity, ObjectIdColumn, Column, ManyToOne, JoinColumn, ObjectId } from 'typeorm';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
-@Entity()
-export class Post {
-  @ObjectIdColumn()
-  id: ObjectId;
-
-  @Column()
+@Schema()
+export class PostEntity {
+  @Prop({ required: true })
   title: string;
 
-  @Column()
+  @Prop({ required: true })
   content: string;
 
-  @Column()
+  @Prop()
   imageUrl: string;
 
-  @Column()
-  location?: string;
-
-  @ManyToOne(() => User)
-  @JoinColumn()
-  user: User;
+  @Prop()
+  location: string;
 }
+
+export type PostEntityDocument = PostEntity & Document;
+
+export const PostEntitySchema = SchemaFactory.createForClass(PostEntity);

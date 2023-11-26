@@ -7,13 +7,13 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { PostsService } from './posts.service';
 import { CreatePostDto } from 'src/dto/post.dto'; // Adjust the path based on your project structure
 import { PostEntity } from 'src/entities/post.entity';
+import { PostService } from './post.service';
 
 @Controller('posts')
-export class PostsController {
-  constructor(private readonly postsService: PostsService) {}
+export class PostController {
+  constructor(private readonly postsService: PostService) {}
 
   @Get()
   findAll(): Promise<PostEntity[]> {

@@ -5,7 +5,7 @@ import { CreatePostDto } from '../dto/post.dto';
 import { PostEntity, PostEntityDocument } from 'src/entities/post.entity';
 
 @Injectable()
-export class PostsService {
+export class PostService {
   constructor(
     @InjectModel(PostEntity.name)
     private readonly postModel: Model<PostEntityDocument>,

@@ -10,7 +10,7 @@ export default function AuthLayout() {
         <div className="mx-auto">
           <img src="/assets/images/logo.svg" alt="logo" />
         </div>
-        <div>
+        <div className="flex flex-col justify-center">
           <h2 className="text-white text-center text-2xl font-bold pt-4 mb-4">
             Snapgram'a hoşgeldiniz.
           </h2>

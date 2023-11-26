@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose'; // Import InjectModel from @nestjs/mongoose
 import { Model } from 'mongoose'; // Import Model from mongoose
-import { CreatePostDto } from '../dto/post.dto';
+import { CreatePostDto } from '../dto/create-post.dto';
 import { PostEntity, PostEntityDocument } from 'src/entities/post.entity';
 
 @Injectable()
@@ -25,7 +25,11 @@ export class PostService {
   }
 
   async update(id: string, post: CreatePostDto): Promise<PostEntity> {
-    await this.postModel.findByIdAndUpdate(id, post).exec();
+    const result = await this.postModel.findByIdAndUpdate(id, post).exec();
+
+    if (!result) {
+      throw new NotFoundException(`Post with id ${id} not found`);
+    }
     return this.postModel.findById(id).exec();
   }
 

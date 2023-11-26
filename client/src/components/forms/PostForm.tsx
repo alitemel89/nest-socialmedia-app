@@ -18,17 +18,14 @@ import {
 import { Textarea } from "../ui/textarea";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import FileUploader from "../shared/FileUploader";
 import Loader from "../shared/Loader";
-import { INewPost } from "@/types";
 
 type PostFormProps = {
-  post?: INewPost;
   action: "Create" | "Update";
 };
 
 
-const PostForm = ({ post, action }: PostFormProps) => {
+const PostForm = ({ action }: PostFormProps) => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user } = useUser();
@@ -37,10 +34,14 @@ const PostForm = ({ post, action }: PostFormProps) => {
     defaultValues: {
       title: "",
       content: "",
-      imageUrl: [],
       location: "",
     },
   });
+
+  const filteredUser = {
+    fullName: user?.fullName,
+    imageUrl: user?.imageUrl
+  };
 
 
   // Query
@@ -51,7 +52,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
     // ACTION = CREATE
     const newPost = await createPost({
       ...value,
-      user,
+      user: filteredUser,
     });
 
     if (isPending) return <Loader />;
@@ -106,22 +107,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
           )}
         />
 
-        <FormField
-          control={form.control}
-          name="imageUrl"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-white">Add Photos</FormLabel>
-              <FormControl>
-                <FileUploader
-                  fieldChange={field.onChange}
-                  mediaUrl={post?.imageUrl!}
-                />
-              </FormControl>
-              <FormMessage className="text-red-500" />
-            </FormItem>
-          )}
-        />
+
 
         <FormField
           control={form.control}

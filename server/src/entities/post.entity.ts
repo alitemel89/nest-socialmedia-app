@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Schema as MongooseSchema } from 'mongoose';
+import { UserEntityDocument } from './user.entity';
 
 @Schema()
 export class PostEntity {
@@ -10,10 +11,13 @@ export class PostEntity {
   content: string;
 
   @Prop()
-  imageUrl: string;
-
-  @Prop()
   location: string;
+
+  @Prop({
+    type: { user: { type: MongooseSchema.Types.ObjectId, ref: 'UserEntity' }, fullName: String, imageUrl: String },
+    required: true,
+  })
+  user: UserEntityDocument
 }
 
 export type PostEntityDocument = PostEntity & Document;

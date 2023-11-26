@@ -4,32 +4,35 @@ export type INavLink = {
   label: string;
 };
 
-export type UserProperties = {
-  fullName: string | null | undefined;
-  imageUrl: string | undefined;
-  id: string | undefined;
+
+export type Post = {
+  _id: string;
+  title: string;
+  content: string;
+  imageUrl?: string;
+  location?: string;
+  user?: {
+    fullName: string | null | undefined;
+    imageUrl: string | undefined;
+  };
 };
+
 
 export type INewPost = {
   title: string;
   content: string;
   imageUrl?: string;
   location?: string;
-  user?: UserProperties | null | undefined;
+  user: User | null | undefined;
 };
 
-export interface Post {
-  id: string;
-  title: string;
-  content: string;
-  imageUrl: string;
-  location: string;
-  user: {
-    id: string;
-    fullName: string;
-    imageUrl: string;
-  };
-}
+
+
+export type User = {
+  fullName: string | null | undefined;
+  imageUrl: string | undefined;
+};
+
 
 export interface HomeProps {
   posts: {

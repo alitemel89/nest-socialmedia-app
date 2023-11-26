@@ -7,7 +7,7 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { CreatePostDto } from 'src/dto/post.dto'; // Adjust the path based on your project structure
+import { CreatePostDto } from 'src/dto/create-post.dto'; // Adjust the path based on your project structure
 import { PostEntity } from 'src/entities/post.entity';
 import { PostService } from './post.service';
 

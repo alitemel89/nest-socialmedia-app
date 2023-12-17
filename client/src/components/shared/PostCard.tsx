@@ -6,23 +6,12 @@ interface PostCardProps {
 }
 
 const PostCard = ({ post }: PostCardProps) => {
-
-  console.log(post)
+  console.log(post);
   return (
-    <div className="rounded-3xl border border-slate-800 bg-slate-950 p-8 lg:p-12">
-      <div className="md:flex">
-        
-        <div>
-          <img
-            className="w-full object-cover"
-            src={"https://picsum.photos/id/237/200/300"}
-            alt={post.title}
-          />
-        </div>
-
-        
+    <div className="rounded-3xl border border-slate-800 bg-slate-950 p-4">
+      <div>
         <div className="p-8">
-        <div className="flex items-center mb-8">
+          <div className="flex items-center mb-8">
             <img
               className="w-10 h-10 rounded-full mr-4"
               src={post.user?.imageUrl}
@@ -42,7 +31,6 @@ const PostCard = ({ post }: PostCardProps) => {
             {post.title}
           </a>
           <p className="mt-2 text-gray-500">{post.content}</p>
-         
         </div>
       </div>
     </div>

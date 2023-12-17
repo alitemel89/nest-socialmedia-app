@@ -21,8 +21,8 @@ const Home = () => {
   if (isPostLoading) return <Loader />;
 
   return (
-    <div className="flex flex-1 bg-black overflow-y-auto">
-      <div className="flex flex-col flex-1 items-center gap-10 py-10 px-5 md:px-8 lg:p-14">
+    <div className="flex flex-1 bg-black overflow-y-auto p-12">
+      <div className="flex flex-col flex-1 gap-10">
         <div className="max-w-5xl flex gap-3 justify-start items-center w-full">
           <img
             src="/assets/icons/add-post.svg"
@@ -34,18 +34,12 @@ const Home = () => {
             Feed
           </h2>
         </div>
-        <div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {posts?.map((post: Post) => (
             <PostCard key={post._id} post={post} />
           ))}
         </div>
       </div>
-
-      {/* <div className="flex flex-col gap-3 items-end mr-10">
-        {users?.map((user: UserProperties) => (
-          <UserCard key={user.id} user={user} />
-        ))}
-      </div> */}
     </div>
   );
 };
